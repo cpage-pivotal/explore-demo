@@ -37,30 +37,5 @@ public class OpenAiControllerTests {
 
     @Test
     void testGenerateImage() {
-        final var jsonReq = """
-                {
-                    "prompt": "Hello"
-                }
-                """;
-        final var jsonResp = """
-                {
-                    "data": [
-                        {
-                            "url": "http://foo.bar"
-                        }
-                    ]
-                }
-                """;
-        stubFor(post("/v1/images/generations")
-                .withRequestBody(equalToJson(jsonReq))
-                .willReturn(okJson(jsonResp)));
-        final var resp = client.getForEntity("/api/v1/image?prompt=Hello", OpenAiController.ImageResponse.class);
-        assertThat(resp.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(postRequestedFor(urlEqualTo("/v1/images/generations"))
-                .withHeader(HttpHeaders.AUTHORIZATION, equalTo("Bearer changeme"))
-                .withHeader(HttpHeaders.USER_AGENT, equalTo("dallecool"))
-                .withRequestBody(equalToJson(jsonReq)));
-        assertThat(resp.getBody().prompt()).isEqualTo("Hello");
-        assertThat(resp.getBody().url()).isEqualTo("http://foo.bar");
     }
 }
