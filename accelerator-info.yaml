@@ -1,0 +1,19 @@
+id: c4fd2725-6203-4360-891e-235b30824f39
+timestamp: 2023-08-19T19:04:44Z
+username: pcorby
+source: VSCODE
+accelerator:
+  name: openai
+  git:
+    url: https://github.com/cpage-pivotal/openai-web-client
+    ref:
+      branch: main
+    commit: cb20beb5578165ba78011479edb43078642914f9
+fragments:
+  - name: tap-workload
+    source:
+      image: eu.gcr.io/tap-shared-instance/tap-packages@sha256:d9c7d8d322f0740666ba7c752a9174d1eb66274338c4f0e211edb1d448104c2a
+options:
+  bsGitBranch: main
+  bsGitRepository: github.com?owner=cpage-pivotal&repo=explore-demo
+  projectName: openai
